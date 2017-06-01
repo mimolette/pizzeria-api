@@ -52,6 +52,8 @@ module.exports = {
 
     getAllIngredientsAction: function () {
         var query = Ingredients.find();
+        query.sort('name');
+
         return query.exec();
     },
     getIngredientsByNameAction: function (name) {
