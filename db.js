@@ -75,9 +75,9 @@ module.exports = {
         query
             .populate({
                 path: 'ingredients',
-                select: 'name',
-                options: {sort: {name: -1}}
+                select: 'name'
             })
+            .sort({ price: 'asc' })
         ;
 
         return query.exec();
@@ -92,6 +92,20 @@ module.exports = {
                 path: 'ingredients',
                 select: 'name',
                 options: {sort: {name: -1}}
+            })
+        ;
+
+        return query.exec();
+    },
+
+    editPizzaAction: function (pizza) {
+        var query = Pizzas.where({_id: pizza._id});
+
+        query
+            .update({
+                name: pizza.name,
+                price: pizza.price,
+                ingredients: pizza.ingredients
             })
         ;
 

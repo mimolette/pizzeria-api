@@ -37,9 +37,11 @@ router.post('/ingredients', function (req, res) {
                 res.json(ingredient);
             })
             .catch(function (err) {
-                console.error(err);
+                res.status(500).json({error: "L'ingrédient " + req.body.name + " existe déja !"});
             })
         ;
+    } else {
+        res.status(500).json({error: "L'ingrédient n'est pas valide !"});
     }
 });
 
